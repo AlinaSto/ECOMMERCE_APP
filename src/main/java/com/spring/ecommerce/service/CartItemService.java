@@ -59,6 +59,7 @@ public class CartItemService {
         Optional<Double> totalPrice = cartItems.stream()
                 .map(cartItem -> cartItem.getQuantity() * cartItem.getProduct().getPrice())
                 .reduce(Double::sum);
+                //reduce(Double::sum);
 
         return totalPrice.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "total price could not be calculated"));
     }

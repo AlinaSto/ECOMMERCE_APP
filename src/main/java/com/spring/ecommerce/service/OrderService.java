@@ -44,7 +44,10 @@ public class OrderService {
         //6. stergem toate cart-itemurile utilizatorului din baza de date
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User foundUser = userRepository.findUserByUsername(userDetails.getUsername()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "user not found"));
-
+//Faci o comanda pentru una, doua… sau toate cotatiile (ofertele de pret) active
+//Aici se va aplica, dupa caz, si reducerea pentru numarul de cotatii din comanda,
+// care practic
+// este egal cu numarul de produse (pentru ca o cotatie se genereaza pentru un produs)
 
         List<CartItem> userCartItems = cartItemRepository.findAllByUser(foundUser);
         Order newOrder = new Order();
